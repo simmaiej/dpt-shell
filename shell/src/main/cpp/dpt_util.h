@@ -21,6 +21,9 @@
 #include <jni.h>
 #include <android/asset_manager.h>
 #include <android/asset_manager_jni.h>
+#include <optional>
+#include <tuple>
+#include <cstdint>
 
 #include <mz_zip.h>
 #include <mz_strm_mem.h>
