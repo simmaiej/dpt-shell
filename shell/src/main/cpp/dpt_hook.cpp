@@ -10,6 +10,7 @@
 #include "dpt_hook.h"
 #include "dpt_risk.h"
 #include "bytehook.h"
+#include <vector>
 
 using namespace dpt;
 
@@ -245,7 +246,7 @@ DPT_ENCRYPT bool hook_LoadClass() {
 
     loadClassAddress = DobbySymbolResolver(GetArtLibPath(), sym);
 
-    int hookResult = DobbyHook(loadClassAddress, (dobby_dummy_func_t) LoadClassV23, (dobby_dummy_func_t *) &g_originLoadClassV23);
+    int hookResult = DobbyHook((void *) loadClassAddress, (void *) LoadClassV23, (void **) &g_originLoadClassV23);
 
     DLOGD("hook result: %d", hookResult);
     return hookResult == 0;
@@ -300,10 +301,10 @@ DPT_ENCRYPT bool hook_DefineClass() {
 
     int hookResult;
     if(g_sdkLevel >= __ANDROID_API_L_MR1__) {
-        hookResult = DobbyHook(defineClassAddress, (dobby_dummy_func_t) DefineClassV22, (dobby_dummy_func_t *) &g_originDefineClassV22);
+        hookResult = DobbyHook((void *) defineClassAddress, (void *) DefineClassV22, (void **) &g_originDefineClassV22);
     }
     else {
-        hookResult = DobbyHook(defineClassAddress, (dobby_dummy_func_t) DefineClassV21, (dobby_dummy_func_t *) &g_originDefineClassV21);
+        hookResult = DobbyHook((void *) defineClassAddress, (void *) DefineClassV21, (void **) &g_originDefineClassV21);
     }
 
     if(hookResult == 0) {
