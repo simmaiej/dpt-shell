@@ -29,6 +29,11 @@ set(MZ_LZMA OFF CACHE BOOL "" FORCE)
 set(MZ_ZSTD OFF CACHE BOOL "" FORCE)
 set(MZ_OPENSSL OFF CACHE BOOL "" FORCE)
 
+# Force C++17 for the project
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 file(GLOB BHOOK_SOURCE external/bhook/bytehook/src/main/cpp/*.c)
 add_library(bytehook STATIC ${BHOOK_SOURCE})
 target_include_directories(bytehook PUBLIC
