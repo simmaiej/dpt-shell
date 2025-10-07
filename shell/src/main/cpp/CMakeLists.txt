@@ -86,10 +86,14 @@ add_library(dpt SHARED ${DPT_NATIVE_SOURCE})
 find_library(log-lib log)
 find_library(android-lib android)
 
+# target_compile_options(dpt PRIVATE
+#         -Wall
+#         -Wextra
+#         -Werror
+# )
 target_compile_options(dpt PRIVATE
         -Wall
         -Wextra
-        -Werror
 )
 target_link_options(dpt PRIVATE "-Wl,-z,max-page-size=16384")
 
